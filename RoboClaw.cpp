@@ -314,7 +314,8 @@ uint8_t RoboClaw::Read1(uint8_t address,uint8_t cmd,bool *valid){
 				if(data!=-1){
 					ccrc |= data;
 					if(crc_get()==ccrc){
-						*valid = true;
+						if(valid)
+							*valid = true;
 						return value;
 					}
 				}
@@ -362,7 +363,8 @@ uint16_t RoboClaw::Read2(uint8_t address,uint8_t cmd,bool *valid){
 				if(data!=-1){
 					ccrc |= data;
 					if(crc_get()==ccrc){
-						*valid = true;
+						if(valid)
+							*valid = true;
 						return value;
 					}
 				}
@@ -422,7 +424,8 @@ uint32_t RoboClaw::Read4(uint8_t address, uint8_t cmd, bool *valid){
 				if(data!=-1){
 					ccrc |= data;
 					if(crc_get()==ccrc){
-						*valid = true;
+						if(valid)
+							*valid = true;
 						return value;
 					}
 				}
@@ -489,7 +492,8 @@ uint32_t RoboClaw::Read4_1(uint8_t address, uint8_t cmd, uint8_t *status, bool *
 				if(data!=-1){
 					ccrc |= data;
 					if(crc_get()==ccrc){
-						*valid = true;
+						if(valid)
+							*valid = true;
 						return value;
 					}
 				}

@@ -31,6 +31,30 @@ class RoboClaw : public Stream
 	SoftwareSerial *sserial;
 #endif
 	
+	enum {
+		ERROR_NONE			= 0x000000,
+		ERROR_ESTOP			= 0x000001,	//Error: E-Stop active
+		ERROR_TEMP			= 0x000002,	//Error: Temperature Sensor 1 >=100c
+		ERROR_TEMP2			= 0x000004,	//Error: Temperature Sensor 2 >=100C (available only on some models)
+		ERROR_MBATHIGH		= 0x000008,	//Error: Main Battery Over Voltage
+		ERROR_LBATHIGH		= 0x000010,	//Error: Logic Battery High Voltage
+		ERROR_LBATLOW		= 0x000020,	//Error: Logic Battery Low Voltage
+		ERROR_FAULTM1		= 0x000040,	//Error: Motor 1 Driver Fault (only on some models)
+		ERROR_FAULTM2		= 0x000080,	//Error: Motor 2 Driver Fault (only on some models)
+		ERROR_SPEED1		= 0x000100,	//Error: Motor 1 Speed Error Limit
+		ERROR_SPEED2		= 0x000200,	//Error: Motor 2 Speed Error Limit
+		ERROR_POS1			= 0x000400,	//Error: Motor 1 Position Error Limit
+		ERROR_POS2			= 0x000800,	//Error: MOtor2 Position Error Limit
+		WARN_OVERCURRENTM1	= 0x010000, //Warning: Motor 1 Current Limited
+		WARN_OVERCURRENTM2	= 0x020000, //Warning: Motor 2 CUrrent Limited
+		WARN_MBATHIGH		= 0x040000, //Warning: Main Battery Voltage High
+		WARN_MBATLOW		= 0x080000, //Warning: Main Battery Low Voltage
+		WARN_TEMP			= 0x100000, //Warning: Temperaure Sensor 1 >=85C
+		WARN_TEMP2			= 0x200000, //Warning: Temperature Sensor 2 >=85C (available only on some models)
+		WARN_S4				= 0x400000, //Warning: Motor 1 Home/Limit Signal
+		WARN_S5				= 0x800000, //Warning: Motor 2 Home/Limit Signal
+	};
+	
 	enum {M1FORWARD = 0,
 			M1BACKWARD = 1,
 			SETMINMB = 2,

@@ -81,6 +81,7 @@ int RoboClaw::peek()
 	else
 		return sserial->peek();
 #endif
+	return -1;
 }
 
 size_t RoboClaw::write(uint8_t byte)
@@ -91,6 +92,7 @@ size_t RoboClaw::write(uint8_t byte)
 	else
 		return sserial->write(byte);
 #endif
+	return -1;
 }
 
 int RoboClaw::read()
@@ -101,6 +103,7 @@ int RoboClaw::read()
 	else
 		return sserial->read();
 #endif
+	return -1;
 }
 
 int RoboClaw::available()
@@ -111,6 +114,7 @@ int RoboClaw::available()
 	else
 		return sserial->available();
 #endif
+	return -1;
 }
 
 void RoboClaw::flush()
@@ -143,6 +147,7 @@ int RoboClaw::read(uint32_t timeout)
 		}
 	}
 #endif
+	return -1;
 }
 
 void RoboClaw::clear()
@@ -212,7 +217,9 @@ bool RoboClaw::read_n(uint8_t cnt,uint8_t address,uint8_t cmd,...)
 	int16_t data;
 	do{
 		flush();
-		
+		while (available ()) {
+			read ();
+		}
 		data=0;
 		crc_clear();
 		write(address);

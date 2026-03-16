@@ -212,6 +212,9 @@ bool RoboClaw::read_n(uint8_t cnt,uint8_t address,uint8_t cmd,...)
 	int16_t data;
 	do{
 		flush();
+		while (available ()) {
+			read ();
+		}
 		
 		data=0;
 		crc_clear();

@@ -143,6 +143,7 @@ int RoboClaw::read(uint32_t timeout)
 		}
 	}
 #endif
+	return -1;
 }
 
 void RoboClaw::clear()
